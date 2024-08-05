@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculo</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        #Calculadora{
+            width: 500px;
+            height: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 1px solid grey;
+            border-radius: 30px;
+            background-color: ghostwhite;
+            margin: 100px;
+        }
+        .box{
+            width: 100%;
+            padding-left: 50px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="Calculadora">
+        <h1>Calculadora</h1>
+        <div class="box">
+            <label>Selecione o Lastro:</label>
+            <select id="selectOptions">
+                <option value=21>07 cx - 21 Cx total</option>
+                <option value=30>10 cx - 30 Cx total</option>
+                <option value="32">08 cx - 32 Cx total</option>
+                <option value="18">06 cx - Trevo</option>
+            </select>
+        </div>
+        <div class="box">
+            <label>Informe a quantidade total de caixas:</label>
+            <input type="number" id="inputQtd">
+        </div>
+        <div class="box">
+            <button id="btCalcular">Calcular</button>
+        </div>
+        <div>
+            <label><p id="result">Resultado:</p></label>
+        </div>
+    </div>
+    <script>
+        const btCalcular = document.getElementById("btCalcular")
+        const selectOptions = document.getElementById("selectOptions")
+        const inputQtd = document.getElementById("inputQtd")
+        const resultado = document.getElementById("result")
+        btCalcular.addEventListener('click',()=>{
+            var lastro = parseInt(selectOptions.value)
+            var qtdCaixas = inputQtd.value
+            if (qtdCaixas > lastro) {
+                var qtdPalet = Math.floor(qtdCaixas/lastro)
+                var qtdQuebra = qtdCaixas - (qtdPalet * lastro)
+                resultado.innerHTML = `Resultado: ${qtdPalet} Paletes + ${qtdQuebra} Cxs de quebra.`
+            }else{
+                resultado.innerHTML = `Resultado: ${qtdCaixas} Cxs.`
+            }
+        })
+    </script>
+</body>
+</html>
